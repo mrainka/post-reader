@@ -7,12 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7221C5E4224679B1002CF40F /* PostReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7221C5E3224679B1002CF40F /* PostReaderTests.swift */; };
 		72CB6E8222402D730038154B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CB6E8122402D730038154B /* AppDelegate.swift */; };
 		72CB6E8922402D740038154B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72CB6E8822402D740038154B /* Assets.xcassets */; };
 		72CB6E8C22402D740038154B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72CB6E8A22402D740038154B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7221C5E6224679B1002CF40F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72CB6E7622402D730038154B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72CB6E7D22402D730038154B;
+			remoteInfo = PostReader;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		7221C5E1224679B1002CF40F /* PostReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7221C5E3224679B1002CF40F /* PostReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReaderTests.swift; sourceTree = "<group>"; };
+		7221C5E5224679B1002CF40F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72CB6E7E22402D730038154B /* PostReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CB6E8122402D730038154B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72CB6E8822402D740038154B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -21,6 +35,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7221C5DE224679B1002CF40F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72CB6E7B22402D730038154B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -31,10 +52,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7221C5E2224679B1002CF40F /* PostReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				7221C5E5224679B1002CF40F /* Info.plist */,
+				7221C5E3224679B1002CF40F /* PostReaderTests.swift */,
+			);
+			path = PostReaderTests;
+			sourceTree = "<group>";
+		};
 		72CB6E7522402D730038154B = {
 			isa = PBXGroup;
 			children = (
 				72CB6E8022402D730038154B /* PostReader */,
+				7221C5E2224679B1002CF40F /* PostReaderTests */,
 				72CB6E7F22402D730038154B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				72CB6E7E22402D730038154B /* PostReader.app */,
+				7221C5E1224679B1002CF40F /* PostReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +93,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7221C5E0224679B1002CF40F /* PostReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7221C5EA224679B1002CF40F /* Build configuration list for PBXNativeTarget "PostReaderTests" */;
+			buildPhases = (
+				7221C5DD224679B1002CF40F /* Sources */,
+				7221C5DE224679B1002CF40F /* Frameworks */,
+				7221C5DF224679B1002CF40F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7221C5E7224679B1002CF40F /* PBXTargetDependency */,
+			);
+			name = PostReaderTests;
+			productName = PostReaderTests;
+			productReference = 7221C5E1224679B1002CF40F /* PostReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		72CB6E7D22402D730038154B /* PostReader */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72CB6E9022402D740038154B /* Build configuration list for PBXNativeTarget "PostReader" */;
@@ -88,6 +138,10 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Marcin Rainka";
 				TargetAttributes = {
+					7221C5E0224679B1002CF40F = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 72CB6E7D22402D730038154B;
+					};
 					72CB6E7D22402D730038154B = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -107,11 +161,19 @@
 			projectRoot = "";
 			targets = (
 				72CB6E7D22402D730038154B /* PostReader */,
+				7221C5E0224679B1002CF40F /* PostReaderTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7221C5DF224679B1002CF40F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72CB6E7C22402D730038154B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,6 +186,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7221C5DD224679B1002CF40F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7221C5E4224679B1002CF40F /* PostReaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72CB6E7A22402D730038154B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,6 +203,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7221C5E7224679B1002CF40F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72CB6E7D22402D730038154B /* PostReader */;
+			targetProxy = 7221C5E6224679B1002CF40F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		72CB6E8A22402D740038154B /* LaunchScreen.storyboard */ = {
@@ -146,6 +224,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7221C5E8224679B1002CF40F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SBXCK5YYV;
+				INFOPLIST_FILE = PostReaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcinrainka.PostReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PostReader.app/PostReader";
+			};
+			name = Debug;
+		};
+		7221C5E9224679B1002CF40F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SBXCK5YYV;
+				INFOPLIST_FILE = PostReaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcinrainka.PostReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PostReader.app/PostReader";
+			};
+			name = Release;
+		};
 		72CB6E8E22402D740038154B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -301,6 +421,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7221C5EA224679B1002CF40F /* Build configuration list for PBXNativeTarget "PostReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7221C5E8224679B1002CF40F /* Debug */,
+				7221C5E9224679B1002CF40F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		72CB6E7922402D730038154B /* Build configuration list for PBXProject "PostReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
