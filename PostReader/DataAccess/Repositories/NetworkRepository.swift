@@ -20,16 +20,19 @@ extension NetworkRepository: Repository {
         }
 
         Alamofire.request(specification.networkRoute).response {
-            guard
-                $0.error == nil,
-                let data = $0.data,
-                let item = try? JSONDecoder().decode(ItemType.self, from: data)
-            else {
+            guard $0.error == nil, let data = $0.data else {
                 completion(.failure)
                 return
             }
 
-            completion(.success(item))
+            DispatchQueue.global(qos: .userInteractive).async {
+                guard let item = try? JSONDecoder().decode(ItemType.self, from: data) else {
+                    DispatchQueue.main.async { completion(.failure) }
+                    return
+                }
+
+                DispatchQueue.main.async { completion(.success(item)) }
+            }
         }
     }
 }
