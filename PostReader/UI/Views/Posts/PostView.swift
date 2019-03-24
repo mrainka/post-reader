@@ -11,6 +11,8 @@ import UIKit
 
 final class PostView: CustomView {
 
+    private(set) var model: PostViewModel?
+
     private weak var titleLabel: UILabel!
 
     override func makeConstraints() {
@@ -28,5 +30,13 @@ final class PostView: CustomView {
         label.numberOfLines = 0
         addSubview(label)
         titleLabel = label
+    }
+}
+
+extension PostView: ModelConfigurable {
+
+    func configure(with model: PostViewModel) {
+        self.model = model
+        titleLabel.text = model.title
     }
 }

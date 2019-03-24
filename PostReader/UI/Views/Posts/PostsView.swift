@@ -11,6 +11,8 @@ import UIKit
 
 final class PostsView: CustomView {
 
+    private(set) var model: PostsViewModel?
+
     private weak var tableView: UITableView!
 
     override func makeConstraints() {
@@ -27,5 +29,12 @@ final class PostsView: CustomView {
         let tableView = UITableView(frame: .zero)
         addSubview(tableView)
         self.tableView = tableView
+    }
+}
+
+extension PostsView: ModelConfigurable {
+
+    func configure(with model: PostsViewModel) {
+        self.model = model
     }
 }

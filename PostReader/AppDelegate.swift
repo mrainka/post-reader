@@ -15,7 +15,9 @@ final class AppDelegate: UIResponder {
 
     private func configureWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UINavigationController(rootViewController: PostsViewController())
+        let postsView = PostsViewController()
+        postsView.configure(with: .init())
+        window.rootViewController = UINavigationController(rootViewController: postsView)
         window.makeKeyAndVisible()
         self.window = window
     }

@@ -1,11 +1,16 @@
 //
-//  PostCell.swift
+//  PostViewModel.swift
 //  PostReader
 //
 //  Created by Marcin Rainka @Home on 24/03/2019.
 //  Copyright © 2019 Marcin Rainka. All rights reserved.
 //
 
-final class PostCell: CustomTableViewCell<PostView> {}
+struct PostViewModel {
 
-extension PostCell: ModelConfigurable {}
+    let title: String?
+
+    init(_ post: Post) {
+        title = post.title
+    }
+}

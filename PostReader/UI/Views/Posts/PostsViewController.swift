@@ -24,3 +24,5 @@ final class PostsViewController: CustomViewController<PostsView> {
         addSearch()
     }
 }
+
+extension PostsViewController: ModelConfigurable {}
