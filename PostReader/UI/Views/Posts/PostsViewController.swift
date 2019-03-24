@@ -18,10 +18,17 @@ final class PostsViewController: CustomViewController<PostsView> {
         self.search = search
     }
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
         addSearch()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        model?.fetchPosts()
     }
 }
 

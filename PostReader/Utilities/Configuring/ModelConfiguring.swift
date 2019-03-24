@@ -23,3 +23,15 @@ extension ModelConfigurable where Self: CustomViewContaining, Self.CustomViewTyp
         customView?.configure(with: model)
     }
 }
+
+extension ModelConfigurable where Self: CustomViewContaining & ViewLoadable, Self.CustomViewType: ModelConfigurable {
+
+    func configure(with model: CustomViewType.ModelType) {
+        guard let customView = customView else {
+            onViewLoaded = { [weak self] in self?.customView?.configure(with: model) }
+            return
+        }
+
+        customView.configure(with: model)
+    }
+}

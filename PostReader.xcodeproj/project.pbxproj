@@ -33,6 +33,14 @@
 		72602F2C224786BB0096FE34 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F2B224786BB0096FE34 /* PostViewModel.swift */; };
 		72602F2F224787460096FE34 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F2E224787460096FE34 /* PostsViewModel.swift */; };
 		72602F31224788480096FE34 /* ModelConfiguring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F30224788480096FE34 /* ModelConfiguring.swift */; };
+		72602F3622478FA50096FE34 /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F3522478FA50096FE34 /* PostsViewModelTests.swift */; };
+		72602F3B224793420096FE34 /* PostFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F3A224793420096FE34 /* PostFactory.swift */; };
+		72602F3D22479C830096FE34 /* CellReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F3C22479C830096FE34 /* CellReuseIdentifying.swift */; };
+		72602F4022479D860096FE34 /* CellDequeuingAndRegistering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F3F22479D860096FE34 /* CellDequeuingAndRegistering.swift */; };
+		72602F442247AF5E0096FE34 /* CellConfiguring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F432247AF5E0096FE34 /* CellConfiguring.swift */; };
+		72602F462247AFB90096FE34 /* PostsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F452247AFB90096FE34 /* PostsTableViewDataSource.swift */; };
+		72602F482247B0180096FE34 /* PostsTableViewDataSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F472247B0180096FE34 /* PostsTableViewDataSourceModel.swift */; };
+		72602F4A2247B2A40096FE34 /* ViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F492247B2A40096FE34 /* ViewLoading.swift */; };
 		72ABDF5222467D1600B04FDD /* NetworkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABDF5122467D1600B04FDD /* NetworkRoute.swift */; };
 		72ABDF5422467D3D00B04FDD /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABDF5322467D3D00B04FDD /* Page.swift */; };
 		72ABDF562246871000B04FDD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABDF552246871000B04FDD /* Post.swift */; };
@@ -87,6 +95,14 @@
 		72602F2B224786BB0096FE34 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		72602F2E224787460096FE34 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		72602F30224788480096FE34 /* ModelConfiguring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfiguring.swift; sourceTree = "<group>"; };
+		72602F3522478FA50096FE34 /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
+		72602F3A224793420096FE34 /* PostFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFactory.swift; sourceTree = "<group>"; };
+		72602F3C22479C830096FE34 /* CellReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReuseIdentifying.swift; sourceTree = "<group>"; };
+		72602F3F22479D860096FE34 /* CellDequeuingAndRegistering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDequeuingAndRegistering.swift; sourceTree = "<group>"; };
+		72602F432247AF5E0096FE34 /* CellConfiguring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfiguring.swift; sourceTree = "<group>"; };
+		72602F452247AFB90096FE34 /* PostsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewDataSource.swift; sourceTree = "<group>"; };
+		72602F472247B0180096FE34 /* PostsTableViewDataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewDataSourceModel.swift; sourceTree = "<group>"; };
+		72602F492247B2A40096FE34 /* ViewLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLoading.swift; sourceTree = "<group>"; };
 		72ABDF5122467D1600B04FDD /* NetworkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoute.swift; sourceTree = "<group>"; };
 		72ABDF5322467D3D00B04FDD /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		72ABDF552246871000B04FDD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -138,8 +154,10 @@
 			children = (
 				7255CDD92246AFCD00C41E84 /* Comparisons.swift */,
 				7255CDD02246ABF900C41E84 /* DataAccessTests */,
+				72602F37224793020096FE34 /* Factories */,
 				7221C5E5224679B1002CF40F /* Info.plist */,
 				7255CDCB2246AABF00C41E84 /* Mocks */,
+				72602F3322478F6F0096FE34 /* ViewModelsTests */,
 			);
 			path = PostReaderTests;
 			sourceTree = "<group>";
@@ -242,6 +260,7 @@
 			children = (
 				72602F28224784310096FE34 /* PostCell.swift */,
 				72602F1C22477F6B0096FE34 /* PostView.swift */,
+				72602F452247AFB90096FE34 /* PostsTableViewDataSource.swift */,
 				72602F18224774090096FE34 /* PostsView.swift */,
 				72602F1A224775130096FE34 /* PostsViewController.swift */,
 			);
@@ -251,7 +270,7 @@
 		72602F222247817C0096FE34 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				72602F23224781A00096FE34 /* CustomViewContaining.swift */,
+				72602F4122479DBA0096FE34 /* Utilities */,
 				72602F0E224771CF0096FE34 /* Views */,
 			);
 			path = UI;
@@ -260,8 +279,10 @@
 		72602F25224782C60096FE34 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				72602F3C22479C830096FE34 /* CellReuseIdentifying.swift */,
 				72602F322247889F0096FE34 /* Configuring */,
 				72602F20224781220096FE34 /* FatalErroring.swift */,
+				72602F492247B2A40096FE34 /* ViewLoading.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -278,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				72602F2B224786BB0096FE34 /* PostViewModel.swift */,
+				72602F472247B0180096FE34 /* PostsTableViewDataSourceModel.swift */,
 				72602F2E224787460096FE34 /* PostsViewModel.swift */,
 			);
 			path = Posts;
@@ -290,6 +312,64 @@
 				72602F30224788480096FE34 /* ModelConfiguring.swift */,
 			);
 			path = Configuring;
+			sourceTree = "<group>";
+		};
+		72602F3322478F6F0096FE34 /* ViewModelsTests */ = {
+			isa = PBXGroup;
+			children = (
+				72602F3422478F8E0096FE34 /* PostsTests */,
+			);
+			path = ViewModelsTests;
+			sourceTree = "<group>";
+		};
+		72602F3422478F8E0096FE34 /* PostsTests */ = {
+			isa = PBXGroup;
+			children = (
+				72602F3522478FA50096FE34 /* PostsViewModelTests.swift */,
+			);
+			path = PostsTests;
+			sourceTree = "<group>";
+		};
+		72602F37224793020096FE34 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				72602F382247930F0096FE34 /* Models */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		72602F382247930F0096FE34 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				72602F39224793180096FE34 /* Posts */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		72602F39224793180096FE34 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				72602F3A224793420096FE34 /* PostFactory.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		72602F4122479DBA0096FE34 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				72602F422247AF4C0096FE34 /* Cell */,
+				72602F23224781A00096FE34 /* CustomViewContaining.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		72602F422247AF4C0096FE34 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				72602F432247AF5E0096FE34 /* CellConfiguring.swift */,
+				72602F3F22479D860096FE34 /* CellDequeuingAndRegistering.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		72ABDF5722468E5F00B04FDD /* Models */ = {
@@ -564,9 +644,11 @@
 			files = (
 				7221C5E4224679B1002CF40F /* NetworkRouteTests.swift in Sources */,
 				7255CDD62246AD5E00C41E84 /* SpecificationMock.swift in Sources */,
+				72602F3B224793420096FE34 /* PostFactory.swift in Sources */,
 				7255CDDC2246B07F00C41E84 /* AnyRepositoryTests.swift in Sources */,
 				7255CDCF2246AB0400C41E84 /* RepositoryMock.swift in Sources */,
 				7255CDD32246AC4F00C41E84 /* NetworkRepositoryTests.swift in Sources */,
+				72602F3622478FA50096FE34 /* PostsViewModelTests.swift in Sources */,
 				7255CDDA2246AFCD00C41E84 /* Comparisons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,10 +659,13 @@
 			files = (
 				72602F2C224786BB0096FE34 /* PostViewModel.swift in Sources */,
 				72602F10224771F40096FE34 /* CustomView.swift in Sources */,
+				72602F4A2247B2A40096FE34 /* ViewLoading.swift in Sources */,
 				72602F2F224787460096FE34 /* PostsViewModel.swift in Sources */,
 				7255CDC82246A92F00C41E84 /* NetworkSpecification.swift in Sources */,
 				7255CDC22246A85B00C41E84 /* NetworkRepository.swift in Sources */,
 				72ABDF5222467D1600B04FDD /* NetworkRoute.swift in Sources */,
+				72602F482247B0180096FE34 /* PostsTableViewDataSourceModel.swift in Sources */,
+				72602F4022479D860096FE34 /* CellDequeuingAndRegistering.swift in Sources */,
 				72602F31224788480096FE34 /* ModelConfiguring.swift in Sources */,
 				72602F21224781220096FE34 /* FatalErroring.swift in Sources */,
 				72602F19224774090096FE34 /* PostsView.swift in Sources */,
@@ -588,6 +673,7 @@
 				72602F27224782F20096FE34 /* Configuring.swift in Sources */,
 				72602F1F2247808C0096FE34 /* CustomTableViewCell.swift in Sources */,
 				72ABDF5E224695F600B04FDD /* Posts.swift in Sources */,
+				72602F462247AFB90096FE34 /* PostsTableViewDataSource.swift in Sources */,
 				7255CDCA2246A9B900C41E84 /* RepositoryQueryResult.swift in Sources */,
 				72CB6E8222402D730038154B /* AppDelegate.swift in Sources */,
 				72602F1D22477F6B0096FE34 /* PostView.swift in Sources */,
@@ -595,9 +681,11 @@
 				7255CDC62246A91600C41E84 /* Specification.swift in Sources */,
 				72ABDF5922468E8E00B04FDD /* PostFormat.swift in Sources */,
 				72602F1B224775130096FE34 /* PostsViewController.swift in Sources */,
+				72602F442247AF5E0096FE34 /* CellConfiguring.swift in Sources */,
 				72ABDF5C22468ECB00B04FDD /* PostType.swift in Sources */,
 				72602F0D22476EE80096FE34 /* PostsSpecification.swift in Sources */,
 				72ABDF5422467D3D00B04FDD /* Page.swift in Sources */,
+				72602F3D22479C830096FE34 /* CellReuseIdentifying.swift in Sources */,
 				72602F24224781A00096FE34 /* CustomViewContaining.swift in Sources */,
 				72ABDF562246871000B04FDD /* Post.swift in Sources */,
 				72602F16224773BB0096FE34 /* CustomViewController.swift in Sources */,

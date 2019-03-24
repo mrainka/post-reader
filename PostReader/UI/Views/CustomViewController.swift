@@ -12,11 +12,16 @@ class CustomViewController<CustomViewType: UIView>: UIViewController {
 
     private(set) weak var customView: CustomViewType?
 
+    var onViewLoaded: (() -> Void)?
+
     override func loadView() {
         let customView = CustomViewType(frame: .zero)
         view = customView
         self.customView = customView
+        onViewLoaded?()
     }
 }
 
 extension CustomViewController: CustomViewContaining {}
+
+extension CustomViewController: ViewLoadable {}

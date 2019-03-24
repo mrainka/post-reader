@@ -8,9 +8,13 @@
 
 struct PostViewModel {
 
+    static let cellReuseID = "PostCell"
+
     let title: String?
 
     init(_ post: Post) {
         title = post.title
     }
 }
+
+extension PostViewModel: CellReuseIdentifiable {}
