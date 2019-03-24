@@ -23,7 +23,35 @@ final class PostsViewModelTests: XCTestCase {
     func testFetchedPostsShouldBeUsed() {
         repository.onQueried = { $1(.success(.init(posts: [.any()]))) }
         let posts = PostsViewModel(posts: .init(repository))
-        posts.fetchPosts()
+        posts.search("anyblog")
         expect(posts.posts.value).toEventuallyNot(beEmpty())
+    }
+
+    func testShouldNotFetchPostsWithoutSearchText() {
+        let posts = PostsViewModel(posts: .init(repository))
+
+        posts.search(nil)
+        posts.search("")
+
+        expect(self.repository.queryWasCalled).to(beFalse())
+    }
+
+    func testShouldNotOverridePostsWhenNoNew() {
+        repository.onQueried = { $1(.success(.init(posts: []))) }
+        let posts = PostsViewModel(posts: .init(repository))
+        posts.posts.accept([.init(.any())])
+        posts.search("anyblog")
+        expect(posts.posts.value).toEventuallyNot(beEmpty())
+    }
+
+    func testShouldNotStartSearchingWhenAppearedWithPosts() {
+        let posts = PostsViewModel(posts: .init(repository))
+        posts.posts.accept([.init(.any())])
+        expect(posts.startSearchingWhenAppeared).to(beFalse())
+    }
+
+    func testShouldStartSearchingWhenAppearedWithoutPosts() {
+        let posts = PostsViewModel(posts: .init(repository))
+        expect(posts.startSearchingWhenAppeared).to(beTrue())
     }
 }

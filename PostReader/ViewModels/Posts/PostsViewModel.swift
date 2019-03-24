@@ -14,25 +14,34 @@ final class PostsViewModel {
 
     private let repository: AnyRepository<Posts>
 
+    var startSearchingWhenAppeared: Bool { return posts.value.isEmpty }
+
     let tableDataSource = PostsTableViewDataSourceModel()
 
     init(posts: AnyRepository<Posts> = .init(NetworkRepository())) {
         repository = posts
     }
 
-    func fetchPosts() {
+    private func fetchPosts(blogName: String) {
         let page = Page(limit: 10, offset: 0)
 
-        repository.query(PostsSpecification(blogID: "peacecorps.tumblr.com", page: page)) { [weak self] in
+        repository.query(PostsSpecification(blogID: blogName + ".tumblr.com", page: page)) { [weak self] in
             switch $0 {
             case .failure:
                 break  // TODO: Inform about failure.
             case .success(let posts):
+                guard !posts.posts.isEmpty else { return }
+
                 DispatchQueue.global(qos: .userInteractive).async {
                     let posts = posts.posts.map(PostViewModel.init)
                     DispatchQueue.main.async { self?.posts.accept(posts) }
                 }
             }
         }
+    }
+
+    func search(_ text: String?) {
+        guard let text = text, !text.isEmpty else { return }
+        fetchPosts(blogName: text)
     }
 }
