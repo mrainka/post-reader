@@ -16,7 +16,7 @@ class CustomView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError(#function + " has not been implemented")
+        fatalError(notImplementedFunction: #function)
     }
 
     /// If you subclass CustomView directly, your implementation of this method does not need to call `super`.
@@ -30,3 +30,5 @@ class CustomView: UIView {
     /// If you subclass CustomView directly, your implementation of this method does not need to call `super`.
     func makeConstraints() {}
 }
+
+extension CustomView: Configurable {}

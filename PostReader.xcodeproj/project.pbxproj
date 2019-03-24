@@ -24,6 +24,12 @@
 		72602F16224773BB0096FE34 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F15224773BB0096FE34 /* CustomViewController.swift */; };
 		72602F19224774090096FE34 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F18224774090096FE34 /* PostsView.swift */; };
 		72602F1B224775130096FE34 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F1A224775130096FE34 /* PostsViewController.swift */; };
+		72602F1D22477F6B0096FE34 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F1C22477F6B0096FE34 /* PostView.swift */; };
+		72602F1F2247808C0096FE34 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F1E2247808C0096FE34 /* CustomTableViewCell.swift */; };
+		72602F21224781220096FE34 /* FatalErroring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F20224781220096FE34 /* FatalErroring.swift */; };
+		72602F24224781A00096FE34 /* CustomViewContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F23224781A00096FE34 /* CustomViewContaining.swift */; };
+		72602F27224782F20096FE34 /* Configuring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F26224782F20096FE34 /* Configuring.swift */; };
+		72602F29224784310096FE34 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72602F28224784310096FE34 /* PostCell.swift */; };
 		72ABDF5222467D1600B04FDD /* NetworkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABDF5122467D1600B04FDD /* NetworkRoute.swift */; };
 		72ABDF5422467D3D00B04FDD /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABDF5322467D3D00B04FDD /* Page.swift */; };
 		72ABDF562246871000B04FDD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABDF552246871000B04FDD /* Post.swift */; };
@@ -69,6 +75,12 @@
 		72602F15224773BB0096FE34 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		72602F18224774090096FE34 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		72602F1A224775130096FE34 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
+		72602F1C22477F6B0096FE34 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		72602F1E2247808C0096FE34 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		72602F20224781220096FE34 /* FatalErroring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErroring.swift; sourceTree = "<group>"; };
+		72602F23224781A00096FE34 /* CustomViewContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewContaining.swift; sourceTree = "<group>"; };
+		72602F26224782F20096FE34 /* Configuring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuring.swift; sourceTree = "<group>"; };
+		72602F28224784310096FE34 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		72ABDF5122467D1600B04FDD /* NetworkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoute.swift; sourceTree = "<group>"; };
 		72ABDF5322467D3D00B04FDD /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		72ABDF552246871000B04FDD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -211,6 +223,7 @@
 		72602F0E224771CF0096FE34 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				72602F1E2247808C0096FE34 /* CustomTableViewCell.swift */,
 				72602F0F224771F40096FE34 /* CustomView.swift */,
 				72602F15224773BB0096FE34 /* CustomViewController.swift */,
 				72602F17224773ED0096FE34 /* Posts */,
@@ -221,10 +234,30 @@
 		72602F17224773ED0096FE34 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				72602F28224784310096FE34 /* PostCell.swift */,
+				72602F1C22477F6B0096FE34 /* PostView.swift */,
 				72602F18224774090096FE34 /* PostsView.swift */,
 				72602F1A224775130096FE34 /* PostsViewController.swift */,
 			);
 			path = Posts;
+			sourceTree = "<group>";
+		};
+		72602F222247817C0096FE34 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				72602F23224781A00096FE34 /* CustomViewContaining.swift */,
+				72602F0E224771CF0096FE34 /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		72602F25224782C60096FE34 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				72602F26224782F20096FE34 /* Configuring.swift */,
+				72602F20224781220096FE34 /* FatalErroring.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		72ABDF5722468E5F00B04FDD /* Models */ = {
@@ -276,7 +309,8 @@
 				72CB6E8D22402D740038154B /* Info.plist */,
 				72CB6E8A22402D740038154B /* LaunchScreen.storyboard */,
 				72ABDF5722468E5F00B04FDD /* Models */,
-				72602F0E224771CF0096FE34 /* Views */,
+				72602F222247817C0096FE34 /* UI */,
+				72602F25224782C60096FE34 /* Utilities */,
 			);
 			path = PostReader;
 			sourceTree = "<group>";
@@ -506,11 +540,15 @@
 				7255CDC82246A92F00C41E84 /* NetworkSpecification.swift in Sources */,
 				7255CDC22246A85B00C41E84 /* NetworkRepository.swift in Sources */,
 				72ABDF5222467D1600B04FDD /* NetworkRoute.swift in Sources */,
+				72602F21224781220096FE34 /* FatalErroring.swift in Sources */,
 				72602F19224774090096FE34 /* PostsView.swift in Sources */,
 				7255CDC42246A8B100C41E84 /* AnyRepository.swift in Sources */,
+				72602F27224782F20096FE34 /* Configuring.swift in Sources */,
+				72602F1F2247808C0096FE34 /* CustomTableViewCell.swift in Sources */,
 				72ABDF5E224695F600B04FDD /* Posts.swift in Sources */,
 				7255CDCA2246A9B900C41E84 /* RepositoryQueryResult.swift in Sources */,
 				72CB6E8222402D730038154B /* AppDelegate.swift in Sources */,
+				72602F1D22477F6B0096FE34 /* PostView.swift in Sources */,
 				72ABDF602246981600B04FDD /* Repository.swift in Sources */,
 				7255CDC62246A91600C41E84 /* Specification.swift in Sources */,
 				72ABDF5922468E8E00B04FDD /* PostFormat.swift in Sources */,
@@ -518,8 +556,10 @@
 				72ABDF5C22468ECB00B04FDD /* PostType.swift in Sources */,
 				72602F0D22476EE80096FE34 /* PostsSpecification.swift in Sources */,
 				72ABDF5422467D3D00B04FDD /* Page.swift in Sources */,
+				72602F24224781A00096FE34 /* CustomViewContaining.swift in Sources */,
 				72ABDF562246871000B04FDD /* Post.swift in Sources */,
 				72602F16224773BB0096FE34 /* CustomViewController.swift in Sources */,
+				72602F29224784310096FE34 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

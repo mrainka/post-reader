@@ -18,3 +18,5 @@ class CustomViewController<CustomViewType: UIView>: UIViewController {
         self.customView = customView
     }
 }
+
+extension CustomViewController: CustomViewContaining {}
