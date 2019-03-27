@@ -13,9 +13,9 @@ struct PostsTableViewDataSourceModel {
 
     var numberOfPosts: Int { return posts.value.count }
 
-    let posts = BehaviorRelay(value: [PostViewModel]())
+    let posts = BehaviorRelay(value: [TextPostViewModel]())
 
-    func post(forRowAt indexPath: IndexPath) -> PostViewModel {
+    func post(forRowAt indexPath: IndexPath) -> TextPostViewModel {
         return posts.value[indexPath.row]
     }
 }

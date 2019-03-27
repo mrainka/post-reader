@@ -12,7 +12,7 @@ extension UITableViewCell {
 
     func configureIfPossible(with model: Any) {
         switch (self, model) {
-        case let (cell, model) as (PostCell, PostViewModel):
+        case let (cell, model) as (TextPostCell, TextPostViewModel):
             cell.configure(with: model)
         default:
             break
