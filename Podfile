@@ -4,6 +4,7 @@ target 'PostReader' do
     use_frameworks!
 
     pod 'Alamofire'
+    pod 'AlamofireImage'
     pod 'RxCocoa'
     pod 'RxSwift'
     pod 'SnapKit'
