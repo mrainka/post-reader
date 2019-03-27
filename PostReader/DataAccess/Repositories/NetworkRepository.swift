@@ -26,7 +26,12 @@ extension NetworkRepository: Repository {
             }
 
             DispatchQueue.global(qos: .userInteractive).async {
-                guard let item = try? JSONDecoder().decode(ItemType.self, from: data) else {
+                let jsonDecoder = JSONDecoder()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss 'GMT'"
+                jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+                guard let item = try? jsonDecoder.decode(ItemType.self, from: data) else {
                     DispatchQueue.main.async { completion(.failure) }
                     return
                 }

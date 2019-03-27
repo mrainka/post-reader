@@ -14,9 +14,15 @@ final class TextPostView: CustomView {
 
     private(set) var model: TextPostViewModel?
 
-    private weak var stackView: UIStackView!
+    // MARK: - Subviews
+
+    private weak var dateLabel: UILabel!
     private weak var textView: UITextView!
     private weak var titleLabel: UILabel!
+
+    private weak var stackView: UIStackView!
+
+    // MARK: -
 
     private func configureTextView(with text: NSAttributedString?) {
         textView.attributedText = text
@@ -31,8 +37,16 @@ final class TextPostView: CustomView {
 
     override func addSubviews() {
         addStackView()
+
         addTitleLabel()
         addTextView()
+        addDateLabel()
+    }
+
+    private func addDateLabel() {
+        let label = UILabel(frame: .zero)
+        stackView.addArrangedSubview(label)
+        dateLabel = label
     }
 
     private func addStackView() {
@@ -72,6 +86,7 @@ extension TextPostView: ModelConfigurable {
     func configure(with model: TextPostViewModel) {
         self.model = model
 
+        dateLabel.text = model.date
         configureTextView(with: model.text)
         titleLabel.text = model.title
     }

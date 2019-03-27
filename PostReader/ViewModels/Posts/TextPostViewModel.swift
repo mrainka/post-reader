@@ -12,12 +12,25 @@ struct TextPostViewModel {
 
     static let cellReuseID = "TextPostCell"
 
+    let date: String?
     let text: NSAttributedString?
     let title: String?
 
+    private static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
+
     init(_ post: Post) {
+        date = type(of: self).date(with: post.date)
         text = type(of: self).text(with: post)
         title = post.title
+    }
+
+    private static func date(with date: Date?) -> String? {
+        guard let date = date else { return nil }
+        return dateFormatter.string(from: date)
     }
 
     private static func html(with body: String) -> String {
