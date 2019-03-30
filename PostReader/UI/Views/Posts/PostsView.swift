@@ -32,9 +32,14 @@ final class PostsView: CustomView {
 
     private func addTableView() {
         let tableView = UITableView(frame: .zero)
+
         tableView.dataSource = tableViewDataSource
+
+        tableView.register(PhotoPostCell.self)
         tableView.register(TextPostCell.self)
+
         addSubview(tableView)
+
         self.tableView = tableView
     }
 }

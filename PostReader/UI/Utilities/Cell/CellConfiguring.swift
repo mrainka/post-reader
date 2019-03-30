@@ -12,6 +12,8 @@ extension UITableViewCell {
 
     func configureIfPossible(with model: Any) {
         switch (self, model) {
+        case let (cell, model) as (PhotoPostCell, PhotoPostViewModel):
+            cell.configure(with: model)
         case let (cell, model) as (TextPostCell, TextPostViewModel):
             cell.configure(with: model)
         default:

@@ -20,8 +20,8 @@ final class PostsViewModelTests: XCTestCase {
         repository = .init()
     }
 
-    func testFetchedPostsShouldBeUsed() {
-        repository.onQueried = { $1(.success(.init(posts: [.any()]))) }
+    func testFetchedSupportedPostsShouldBeUsed() {
+        repository.onQueried = { $1(.success(.init(posts: [.anySupported()]))) }
         let posts = PostsViewModel(posts: .init(repository))
         posts.search("anyblog")
         expect(posts.posts.value).toEventuallyNot(beEmpty())
@@ -39,14 +39,14 @@ final class PostsViewModelTests: XCTestCase {
     func testShouldNotOverridePostsWhenNoNew() {
         repository.onQueried = { $1(.success(.init(posts: []))) }
         let posts = PostsViewModel(posts: .init(repository))
-        posts.posts.accept([.init(.any())])
+        posts.posts.accept([PostViewModelFactory.any()])
         posts.search("anyblog")
         expect(posts.posts.value).toEventuallyNot(beEmpty())
     }
 
     func testShouldNotStartSearchingWhenAppearedWithPosts() {
         let posts = PostsViewModel(posts: .init(repository))
-        posts.posts.accept([.init(.any())])
+        posts.posts.accept([PostViewModelFactory.any()])
         expect(posts.startSearchingWhenAppeared).to(beFalse())
     }
 

@@ -8,7 +8,7 @@
 
 enum PostType: String {
 
-    case text
+    case photo, text
 }
 
 extension PostType: Decodable {}

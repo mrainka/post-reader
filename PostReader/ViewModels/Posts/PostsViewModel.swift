@@ -10,7 +10,7 @@ import RxCocoa
 
 final class PostsViewModel {
 
-    var posts: BehaviorRelay<[TextPostViewModel]> { return tableDataSource.posts }
+    var posts: BehaviorRelay<[PostViewModel]> { return tableDataSource.posts }
 
     private let repository: AnyRepository<Posts>
 
@@ -33,7 +33,7 @@ final class PostsViewModel {
                 guard !posts.posts.isEmpty else { return }
 
                 DispatchQueue.global(qos: .userInteractive).async {
-                    let posts = posts.posts.map(TextPostViewModel.init)
+                    let posts = posts.posts.compactMap { PostViewModelFactory.post(with: $0) }
                     DispatchQueue.main.async { self?.posts.accept(posts) }
                 }
             }
