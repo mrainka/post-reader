@@ -41,7 +41,10 @@ final class PostsViewController: CustomViewController<PostsView>, UISearchBarDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         definesPresentationContext = true
+        title = "Posts".localized
+
         addSearch()
     }
 }
