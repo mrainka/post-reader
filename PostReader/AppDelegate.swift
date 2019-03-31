@@ -15,10 +15,18 @@ final class AppDelegate: UIResponder {
 
     private func configureWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
+
         let postsView = PostsViewController()
         postsView.configure(with: .init())
-        window.rootViewController = UINavigationController(rootViewController: postsView)
+
+        let navigation = UINavigationController(rootViewController: postsView)
+        navigation.hidesBarsOnSwipe = true
+        navigation.navigationBar.barStyle = .black
+
+        window.rootViewController = navigation
+
         window.makeKeyAndVisible()
+
         self.window = window
     }
 }
