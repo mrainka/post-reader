@@ -17,10 +17,17 @@ final class PostsView: CustomView {
 
     private(set) var model: PostsViewModel?
 
+    // MARK: - Subviews
+
+    private weak var activityIndicatorView: UIActivityIndicatorView!
+
     private weak var tableView: UITableView!
     private let tableViewDataSource = PostsTableViewDataSource()
 
+    // MARK: -
+
     override func makeConstraints() {
+        activityIndicatorView.snp.makeConstraints { $0.center.equalToSuperview() }
         tableView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 
@@ -28,6 +35,14 @@ final class PostsView: CustomView {
 
     override func addSubviews() {
         addTableView()
+        addActivityIndicatorView()
+    }
+
+    private func addActivityIndicatorView() {
+        let activityIndicatorView = UIActivityIndicatorView(frame: .zero)
+        activityIndicatorView.style = .whiteLarge
+        addSubview(activityIndicatorView)
+        self.activityIndicatorView = activityIndicatorView
     }
 
     private func addTableView() {
@@ -51,6 +66,8 @@ extension PostsView: ModelConfigurable {
 
     func configure(with model: PostsViewModel) {
         self.model = model
+
+        model.isIndicatingActivity.bind(to: activityIndicatorView.rx.isAnimating).disposed(by: disposeBag)
 
         tableViewDataSource.configure(with: model.tableDataSource)
         model.posts.subscribe(onNext: { [unowned self] _ in self.tableView.reloadData() }).disposed(by: disposeBag)
