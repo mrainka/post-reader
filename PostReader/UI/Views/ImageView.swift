@@ -31,6 +31,6 @@ extension ImageView: ModelConfigurable {
         self.model = model
 
         updateConstraints(aspectRatio: model.aspectRatio)
-        af_setImage(withURL: model.url)
+        af_setImage(withURL: model.url, imageTransition: .crossDissolve(0.5))
     }
 }

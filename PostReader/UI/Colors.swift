@@ -11,4 +11,5 @@ import UIKit
 extension UIColor {
 
     static let sherpaBlue = UIColor(red: 0 / 255, green: 25 / 255, blue: 53 / 255, alpha: 1)
+    static let whiteSmoke = UIColor(red: 233 / 255, green: 233 / 255, blue: 233 / 255, alpha: 1)
 }

@@ -51,6 +51,7 @@ final class PhotoPostView: CustomView {
 
     private func addImageView() {
         let imageView = ImageView(frame: .zero)
+        imageView.backgroundColor = .whiteSmoke
         stackView.addArrangedSubview(imageView)
         self.imageView = imageView
     }
