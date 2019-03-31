@@ -27,7 +27,7 @@ final class PostsViewModel {
     private func fetchPosts(blogName: String) {
         isIndicatingActivity.accept(posts.value.isEmpty)
 
-        let page = Page(limit: 10, offset: 0)
+        let page = Page(limit: 15, offset: 0)
 
         repository.query(PostsSpecification(blogID: blogName + ".tumblr.com", page: page)) { [weak self] in
             switch $0 {
