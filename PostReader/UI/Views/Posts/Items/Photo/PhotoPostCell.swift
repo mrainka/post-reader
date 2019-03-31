@@ -14,7 +14,12 @@ final class PhotoPostCell: CustomTableViewCell<PhotoPostView> {
 
     override func configure() {
         super.configure()
+
         configureBackgroundColor()
+        configureBorder()
+
+        roundCorners()
+
         selectionStyle = type(of: self).selectionStyle
     }
 
