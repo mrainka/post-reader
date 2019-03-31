@@ -34,13 +34,13 @@ protocol PostViewModel: CellReuseIdentifiable {
 
 extension PostViewModel {
 
-    private static func html(with body: String) -> String {
+    private static func html(with body: String, font: String) -> String {
         return """
             <html>
                 <head>
                     <style>
                         a { text-decoration: none }
-                        body { font: -apple-system-body }
+                        body { font: -apple-system-\(font) }
                     </style>
                 </head>
 
@@ -51,19 +51,25 @@ extension PostViewModel {
             """
     }
 
-    private static func parsed(_ text: String?, of format: PostFormat?) -> NSAttributedString? {
+    private static func parsed(_ text: String?, of format: PostFormat?, font: String) -> NSAttributedString? {
         guard format == .html, let text = text, !text.isEmpty else { return nil }
+
         let encoding = String.Encoding.utf8
-        guard let data = html(with: text).data(using: encoding, allowLossyConversion: true) else { return nil }
+
+        guard let data = html(with: text, font: font).data(using: encoding, allowLossyConversion: true) else {
+            return nil
+        }
+
         let parsedText = (try? NSAttributedString(
             data: data,
             options: [.characterEncoding: encoding.rawValue, .documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil))?.trimmed
+
         return (parsedText?.string.isEmpty ?? true) ? nil : parsedText
     }
 
-    static func text(_ text: String?, of format: PostFormat?) -> TextViewModel<NSAttributedString> {
-        return .init(parsed(text, of: format))
+    static func text(_ text: String?, of format: PostFormat?, font: String) -> TextViewModel<NSAttributedString> {
+        return .init(parsed(text, of: format, font: font))
     }
 
     // MARK: - Formatting a Date

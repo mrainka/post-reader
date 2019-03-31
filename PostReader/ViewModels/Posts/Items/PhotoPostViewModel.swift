@@ -19,7 +19,7 @@ struct PhotoPostViewModel {
     private static let dateFormatter = PhotoPostViewModel.dateFormatter()
 
     init(_ post: Post) {
-        caption = type(of: self).text(post.caption, of: post.format)
+        caption = type(of: self).text(post.caption, of: post.format, font: "caption1")
         date = type(of: self).date(with: post.date, formattedBy: type(of: self).dateFormatter)
         image = ImageViewModel(post.photo)
     }

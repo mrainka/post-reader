@@ -29,8 +29,13 @@ extension PostView {
 
     static func addDateLabel(to stackView: UIStackView) -> UILabel {
         let label = UILabel(frame: .zero)
+
+        label.font = .preferredFont(forTextStyle: .footnote)
         label.textAlignment = .right
+        label.textColor = .darkGray
+
         stackView.addArrangedSubview(label)
+
         return label
     }
 

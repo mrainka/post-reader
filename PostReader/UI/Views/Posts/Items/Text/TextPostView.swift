@@ -46,8 +46,12 @@ final class TextPostView: CustomView {
 
     private func addTitleLabel() {
         let label = UILabel(frame: .zero)
+
+        label.font = .preferredFont(forTextStyle: .title1)
         label.numberOfLines = 0
+
         stackView.addArrangedSubview(label)
+
         titleLabel = label
     }
 }

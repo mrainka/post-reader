@@ -20,7 +20,7 @@ struct TextPostViewModel {
 
     init(_ post: Post) {
         date = type(of: self).date(with: post.date, formattedBy: type(of: self).dateFormatter)
-        text = type(of: self).text(post.body, of: post.format)
+        text = type(of: self).text(post.body, of: post.format, font: "body")
         title = .init((post.title?.isEmpty ?? true) ? nil : post.title)
     }
 }
