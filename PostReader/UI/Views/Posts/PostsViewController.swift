@@ -19,6 +19,7 @@ final class PostsViewController: CustomViewController<PostsView>, UISearchBarDel
 
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.delegate = self
+        search.searchBar.placeholder = "Type a blog name".localized
 
         navigationItem.searchController = search
 
