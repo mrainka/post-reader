@@ -7,7 +7,6 @@
 //
 
 import AlamofireImage
-import SnapKit
 import UIKit
 
 extension UIImageView: Clearable {
@@ -15,6 +14,5 @@ extension UIImageView: Clearable {
     func clear() {
         af_cancelImageRequest()
         image = nil
-        snp.removeConstraints()
     }
 }

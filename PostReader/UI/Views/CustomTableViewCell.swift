@@ -13,6 +13,8 @@ class CustomTableViewCell<CustomViewType: UIView>: UITableViewCell {
 
     private(set) weak var customView: CustomViewType?
 
+    class var customViewInset: UIEdgeInsets { return .zero }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
@@ -30,7 +32,10 @@ class CustomTableViewCell<CustomViewType: UIView>: UITableViewCell {
     }
 
     func configure() {
-        addCustomView().snp.makeConstraints { $0.edges.equalToSuperview() }
+        addCustomView().snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(type(of: self).customViewInset).priority(999)
+            $0.left.right.top.equalToSuperview().inset(type(of: self).customViewInset)
+        }
     }
 }
 

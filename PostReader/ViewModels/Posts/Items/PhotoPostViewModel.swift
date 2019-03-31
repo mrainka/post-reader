@@ -10,16 +10,16 @@ import Foundation
 
 struct PhotoPostViewModel {
 
-    static let cellReuseID = "PhotoPostCell"
-
-    let caption: NSAttributedString?
+    let caption: TextViewModel<NSAttributedString>
     let date: String?
     let image: ImageViewModel?
+
+    static let cellReuseID = "PhotoPostCell"
 
     private static let dateFormatter = PhotoPostViewModel.dateFormatter()
 
     init(_ post: Post) {
-        caption = type(of: self).parsed(post.caption, of: post.format)
+        caption = type(of: self).text(post.caption, of: post.format)
         date = type(of: self).date(with: post.date, formattedBy: type(of: self).dateFormatter)
         image = ImageViewModel(post.photo)
     }

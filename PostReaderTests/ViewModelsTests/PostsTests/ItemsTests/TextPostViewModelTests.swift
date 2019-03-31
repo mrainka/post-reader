@@ -14,10 +14,10 @@ import XCTest
 final class TextPostViewModelTests: XCTestCase {
 
     func testShouldHaveTextWhenPostFormatIsHTML() {
-        expect(TextPostViewModel(.any(body: "anybody", format: .html)).text).toNot(beNil())
+        expect(TextPostViewModel(.any(body: "anybody", format: .html)).text.text).toNot(beNil())
     }
 
     func testShouldNotHaveTextWhenPostFormatIsNotHTML() {
-        expect(TextPostViewModel(.any(body: "anybody")).text).to(beNil())
+        expect(TextPostViewModel(.any(body: "anybody")).text.text).to(beNil())
     }
 }

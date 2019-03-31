@@ -33,7 +33,10 @@ final class PostsView: CustomView {
     private func addTableView() {
         let tableView = UITableView(frame: .zero)
 
+        tableView.backgroundColor = .sherpaBlue
+        tableView.contentInset = .init(top: Margin.default, left: 0, bottom: 0, right: 0)
         tableView.dataSource = tableViewDataSource
+        tableView.separatorStyle = .none
 
         tableView.register(PhotoPostCell.self)
         tableView.register(TextPostCell.self)

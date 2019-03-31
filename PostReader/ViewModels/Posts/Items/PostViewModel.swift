@@ -51,14 +51,19 @@ extension PostViewModel {
             """
     }
 
-    static func parsed(_ text: String?, of format: PostFormat?) -> NSAttributedString? {
-        guard format == .html, let text = text else { return nil }
+    private static func parsed(_ text: String?, of format: PostFormat?) -> NSAttributedString? {
+        guard format == .html, let text = text, !text.isEmpty else { return nil }
         let encoding = String.Encoding.utf8
         guard let data = html(with: text).data(using: encoding, allowLossyConversion: true) else { return nil }
-        return (try? NSAttributedString(
+        let parsedText = (try? NSAttributedString(
             data: data,
             options: [.characterEncoding: encoding.rawValue, .documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil))?.trimmed
+        return (parsedText?.string.isEmpty ?? true) ? nil : parsedText
+    }
+
+    static func text(_ text: String?, of format: PostFormat?) -> TextViewModel<NSAttributedString> {
+        return .init(parsed(text, of: format))
     }
 
     // MARK: - Formatting a Date

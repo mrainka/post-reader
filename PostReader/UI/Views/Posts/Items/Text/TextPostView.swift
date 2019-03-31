@@ -22,8 +22,15 @@ final class TextPostView: CustomView {
 
     // MARK: -
 
+    private func configureTitleLabel(with model: TextViewModel<String>) {
+        titleLabel.isHidden = model.isHidden
+        titleLabel.text = model.text
+    }
+
     override func makeConstraints() {
-        type(of: self).makeConstraints(of: stackView)
+        type(of: self).makeConstraints(
+            of: stackView,
+            inset: .init(top: Margin.default, left: Margin.default, bottom: Margin.default, right: Margin.default))
     }
 
     // MARK: - Adding the Subviews
@@ -52,7 +59,7 @@ extension TextPostView: ModelConfigurable {
 
         dateLabel.text = model.date
         type(of: self).configure(textView, with: model.text)
-        titleLabel.text = model.title
+        configureTitleLabel(with: model.title)
     }
 }
 

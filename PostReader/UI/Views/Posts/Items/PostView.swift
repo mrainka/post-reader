@@ -14,28 +14,32 @@ protocol PostView: ModelConfigurable where Self: CustomView, ModelType: PostView
 
 extension PostView {
 
-    static func configure(_ textView: UITextView, with text: NSAttributedString?) {
-        textView.attributedText = text
+    static func configure(_ textView: UITextView, with model: TextViewModel<NSAttributedString>) {
+        textView.attributedText = model.text
+        textView.isHidden = model.isHidden
+
         textView.layoutIfNeeded()
     }
 
-    static func makeConstraints(of stackView: UIStackView) {
-        stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    static func makeConstraints(of stackView: UIStackView, inset: UIEdgeInsets) {
+        stackView.snp.makeConstraints { $0.edges.equalToSuperview().inset(inset) }
     }
 
     // MARK: - Adding the Subviews
 
     static func addDateLabel(to stackView: UIStackView) -> UILabel {
         let label = UILabel(frame: .zero)
+        label.textAlignment = .right
         stackView.addArrangedSubview(label)
         return label
     }
 
-    func addStackView() -> UIStackView {
+    func addStackView(alignment: UIStackView.Alignment = .fill) -> UIStackView {
         let stackView = UIStackView(frame: .zero)
 
+        stackView.alignment = alignment
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = Margin.large
 
         addSubview(stackView)
 

@@ -14,10 +14,10 @@ import XCTest
 final class PhotoPostViewModelTests: XCTestCase {
 
     func testShouldHaveCaptionWhenPostFormatIsHTML() {
-        expect(PhotoPostViewModel(.any(caption: "anycaption", format: .html)).caption).toNot(beNil())
+        expect(PhotoPostViewModel(.any(caption: "anycaption", format: .html)).caption.text).toNot(beNil())
     }
 
     func testShouldNotHaveCaptionWhenPostFormatIsNotHTML() {
-        expect(PhotoPostViewModel(.any(caption: "anycaption")).caption).to(beNil())
+        expect(PhotoPostViewModel(.any(caption: "anycaption")).caption.text).to(beNil())
     }
 }

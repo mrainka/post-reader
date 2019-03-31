@@ -16,7 +16,7 @@ final class PhotoPostView: CustomView {
 
     private weak var captionView: UITextView!
     private weak var dateLabel: UILabel!
-    private weak var imageView: UIImageView!
+    private weak var imageView: ImageView!
 
     private weak var stackView: UIStackView!
 
@@ -32,13 +32,16 @@ final class PhotoPostView: CustomView {
     }
 
     override func makeConstraints() {
-        type(of: self).makeConstraints(of: stackView)
+        captionView.snp.makeConstraints { $0.left.right.equalToSuperview().inset(Margin.default) }
+        dateLabel.snp.makeConstraints { $0.left.right.equalToSuperview().inset(Margin.default) }
+        imageView.snp.makeConstraints { $0.left.right.equalToSuperview() }
+        type(of: self).makeConstraints(of: stackView, inset: .init(top: 0, left: 0, bottom: Margin.default, right: 0))
     }
 
     // MARK: - Adding the Subviews
 
     override func addSubviews() {
-        let stackView = addStackView()
+        let stackView = addStackView(alignment: .center)
         self.stackView = stackView
 
         addImageView()
@@ -47,7 +50,7 @@ final class PhotoPostView: CustomView {
     }
 
     private func addImageView() {
-        let imageView = UIImageView(frame: .zero)
+        let imageView = ImageView(frame: .zero)
         stackView.addArrangedSubview(imageView)
         self.imageView = imageView
     }
