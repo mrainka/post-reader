@@ -70,6 +70,8 @@
 		72CB6E8222402D730038154B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CB6E8122402D730038154B /* AppDelegate.swift */; };
 		72CB6E8922402D740038154B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72CB6E8822402D740038154B /* Assets.xcassets */; };
 		72CB6E8C22402D740038154B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72CB6E8A22402D740038154B /* LaunchScreen.storyboard */; };
+		72E9FBF92252984D00F853DA /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9FBF82252984D00F853DA /* RepositoryAction.swift */; };
+		72E9FBFB2252987700F853DA /* NetworkRepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9FBFA2252987700F853DA /* NetworkRepositoryAction.swift */; };
 		72F6F757224BF8660071C639 /* TextPostViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F6F756224BF8660071C639 /* TextPostViewModelTests.swift */; };
 		B3A6D3FD1F54330FDA71318B /* Pods_PostReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1F8F49F869E81D64A5FFB2 /* Pods_PostReader.framework */; };
 /* End PBXBuildFile section */
@@ -156,6 +158,8 @@
 		72CB6E8822402D740038154B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72CB6E8B22402D740038154B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72CB6E8D22402D740038154B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72E9FBF82252984D00F853DA /* RepositoryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAction.swift; sourceTree = "<group>"; };
+		72E9FBFA2252987700F853DA /* NetworkRepositoryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryAction.swift; sourceTree = "<group>"; };
 		72F6F756224BF8660071C639 /* TextPostViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPostViewModelTests.swift; sourceTree = "<group>"; };
 		7F224DFE8C33F922F92BF636 /* Pods_PostReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PostReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1806839A3D517CB4EC3A33 /* Pods-PostReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostReaderTests.debug.xcconfig"; path = "Target Support Files/Pods-PostReaderTests/Pods-PostReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -273,7 +277,6 @@
 			children = (
 				72ABDF5122467D1600B04FDD /* NetworkRoute.swift */,
 				7255CDBF2246A80F00C41E84 /* Repositories */,
-				7255CDC92246A9B900C41E84 /* RepositoryQueryResult.swift */,
 				7255CDC02246A83600C41E84 /* Specifications */,
 			);
 			path = DataAccess;
@@ -282,9 +285,11 @@
 		7255CDBF2246A80F00C41E84 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				72E9FBF72252983F00F853DA /* Actions */,
 				7255CDC32246A8B100C41E84 /* AnyRepository.swift */,
 				7255CDC12246A85B00C41E84 /* NetworkRepository.swift */,
 				72ABDF5F2246981600B04FDD /* Repository.swift */,
+				7255CDC92246A9B900C41E84 /* RepositoryQueryResult.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -545,6 +550,15 @@
 			path = PostReader;
 			sourceTree = "<group>";
 		};
+		72E9FBF72252983F00F853DA /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				72E9FBFA2252987700F853DA /* NetworkRepositoryAction.swift */,
+				72E9FBF82252984D00F853DA /* RepositoryAction.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		72F6F755224BF7290071C639 /* Text */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,7 +812,9 @@
 				724D0C27224FC83900B4C940 /* PostViewModelFactory.swift in Sources */,
 				72090E8E2250D3BC002EB632 /* Margin.swift in Sources */,
 				72602F2F224787460096FE34 /* PostsViewModel.swift in Sources */,
+				72E9FBFB2252987700F853DA /* NetworkRepositoryAction.swift in Sources */,
 				724D0C19224F8E4C00B4C940 /* PhotoPostView.swift in Sources */,
+				72E9FBF92252984D00F853DA /* RepositoryAction.swift in Sources */,
 				7255CDC82246A92F00C41E84 /* NetworkSpecification.swift in Sources */,
 				7255CDC22246A85B00C41E84 /* NetworkRepository.swift in Sources */,
 				72ABDF5222467D1600B04FDD /* NetworkRoute.swift in Sources */,

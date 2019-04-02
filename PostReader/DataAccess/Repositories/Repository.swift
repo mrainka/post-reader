@@ -11,4 +11,5 @@ protocol Repository {
     associatedtype ItemType
 
     func query(_ specification: Specification, completion: @escaping (RepositoryQueryResult<ItemType>) -> Void)
+        -> RepositoryAction?
 }

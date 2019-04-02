@@ -8,7 +8,7 @@
 
 struct AnyRepository<ItemType> {
 
-    private let onQueried: (Specification, @escaping (RepositoryQueryResult<ItemType>) -> Void) -> Void
+    private let onQueried: (Specification, @escaping (RepositoryQueryResult<ItemType>) -> Void) -> RepositoryAction?
 
     init<RepositoryType: Repository>(_ repository: RepositoryType) where RepositoryType.ItemType == ItemType {
         onQueried = repository.query
@@ -17,7 +17,10 @@ struct AnyRepository<ItemType> {
 
 extension AnyRepository: Repository {
 
-    func query(_ specification: Specification, completion: @escaping (RepositoryQueryResult<ItemType>) -> Void) {
-        onQueried(specification, completion)
+    @discardableResult
+    func query(_ specification: Specification, completion: @escaping (RepositoryQueryResult<ItemType>) -> Void)
+        -> RepositoryAction?
+    {
+        return onQueried(specification, completion)
     }
 }

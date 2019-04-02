@@ -21,7 +21,7 @@ final class PostsViewModelTests: XCTestCase {
     }
 
     func testFetchedSupportedPostsShouldBeUsed() {
-        repository.onQueried = { $1(.success(.init(posts: [.anySupported()]))) }
+        repository.onQueried = { $1(.success(.init(posts: [.anySupported()]))); return nil }
         let posts = PostsViewModel(posts: .init(repository))
         posts.search("anyblog")
         expect(posts.posts.value).toEventuallyNot(beEmpty())
@@ -37,7 +37,7 @@ final class PostsViewModelTests: XCTestCase {
     }
 
     func testShouldNotOverridePostsWhenNoNew() {
-        repository.onQueried = { $1(.success(.init(posts: []))) }
+        repository.onQueried = { $1(.success(.init(posts: []))); return nil }
         let posts = PostsViewModel(posts: .init(repository))
         posts.posts.accept([PostViewModelFactory.any()])
         posts.search("anyblog")

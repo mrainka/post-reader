@@ -10,15 +10,17 @@
 
 final class RepositoryMock<ItemType> {
 
-    var onQueried: ((Specification, @escaping (RepositoryQueryResult<ItemType>) -> Void) -> Void)?
+    var onQueried: ((Specification, @escaping (RepositoryQueryResult<ItemType>) -> Void) -> RepositoryAction?)?
 
     private(set) var queryWasCalled = false
 }
 
 extension RepositoryMock: Repository {
 
-    func query(_ specification: Specification, completion: @escaping (RepositoryQueryResult<ItemType>) -> Void) {
+    func query(_ specification: Specification, completion: @escaping (RepositoryQueryResult<ItemType>) -> Void)
+        -> RepositoryAction?
+    {
         queryWasCalled = true
-        onQueried?(specification, completion)
+        return onQueried?(specification, completion)
     }
 }

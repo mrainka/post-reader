@@ -6,15 +6,19 @@
 //  Copyright © 2019 Marcin Rainka. All rights reserved.
 //
 
+import Dispatch
 import RxCocoa
 
 final class PostsViewModel {
+
+    private weak var fetchedPostsProcessing: DispatchWorkItem?
 
     let isIndicatingActivity = BehaviorRelay(value: false)
 
     var posts: BehaviorRelay<[PostViewModel]> { return tableDataSource.posts }
 
     private let repository: AnyRepository<Posts>
+    private weak var repositoryAction: RepositoryAction?
 
     var startSearchingWhenAppeared: Bool { return posts.value.isEmpty }
 
@@ -24,19 +28,43 @@ final class PostsViewModel {
         repository = posts
     }
 
+    func search(_ text: String?) {
+        guard let text = text, !text.isEmpty else { return }
+        fetchPosts(blogName: text)
+    }
+
+    // MARK: - Fetching the Posts
+
+    private func cancelPostsFetching() {
+        fetchedPostsProcessing?.cancel()
+        repositoryAction?.cancel()
+    }
+
     private func fetchPosts(blogName: String) {
+        cancelPostsFetching()
+
         isIndicatingActivity.accept(posts.value.isEmpty)
 
-        let page = Page(limit: 15, offset: 0)
+        let specification = PostsSpecification(blogID: blogName + ".tumblr.com", page: .init(limit: 15, offset: 0))
 
-        repository.query(PostsSpecification(blogID: blogName + ".tumblr.com", page: page)) { [weak self] in
+        repositoryAction = repository.query(specification) { [weak self] in
+            guard let `self` = self else { return }
+
             switch $0 {
             case .failure:
-                self?.isIndicatingActivity.accept(false)
+                self.isIndicatingActivity.accept(false)
                 // TODO: Inform about failure.
             case .success(let posts):
-                DispatchQueue.global(qos: .userInteractive).async {
-                    let posts = posts.posts.compactMap { PostViewModelFactory.post(with: $0) }
+                var postsProcessing: DispatchWorkItem!
+
+                postsProcessing = .init { [weak self] in
+                    defer { postsProcessing = nil }
+
+                    let posts = posts.posts.compactMap {
+                        postsProcessing.isCancelled ? nil : PostViewModelFactory.post(with: $0)
+                    }
+
+                    guard !postsProcessing.isCancelled else { return }
 
                     DispatchQueue.main.async {
                         guard let `self` = self else { return }
@@ -45,12 +73,11 @@ final class PostsViewModel {
                         self.posts.accept(posts)
                     }
                 }
+
+                DispatchQueue.global(qos: .userInteractive).async(execute: postsProcessing)
+
+                self.fetchedPostsProcessing = postsProcessing
             }
         }
-    }
-
-    func search(_ text: String?) {
-        guard let text = text, !text.isEmpty else { return }
-        fetchPosts(blogName: text)
     }
 }
