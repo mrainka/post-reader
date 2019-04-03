@@ -8,6 +8,7 @@ target 'PostReader' do
     pod 'RxCocoa'
     pod 'RxSwift'
     pod 'SnapKit'
+    pod 'UIScrollView-InfiniteScroll'
 
     target 'PostReaderTests' do
         inherit! :search_paths

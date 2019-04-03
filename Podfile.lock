@@ -9,6 +9,7 @@ PODS:
   - RxSwift (4.4.2):
     - RxAtomic (>= 4.4.2, ~> 4.4)
   - SnapKit (4.2.0)
+  - UIScrollView-InfiniteScroll (1.1.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SnapKit
+  - UIScrollView-InfiniteScroll
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - SnapKit
+    - UIScrollView-InfiniteScroll
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -36,7 +39,8 @@ SPEC CHECKSUMS:
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
 
-PODFILE CHECKSUM: ededf3c3048da2a62a9ad4387615d6e7a5eca565
+PODFILE CHECKSUM: 21b367176e55baf4afcd1360de86fb00728ceec3
 
 COCOAPODS: 1.6.0
