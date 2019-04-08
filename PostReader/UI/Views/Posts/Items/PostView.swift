@@ -14,6 +14,12 @@ protocol PostView: ModelConfigurable where Self: CustomView, ModelType: PostView
 
 extension PostView {
 
+    private static var fontOfDateLabel: UIFont { return .preferredFont(forTextStyle: .footnote) }
+
+    static var preferredHeightOfDateLabel: CGFloat { return "".preferredHeight(with: fontOfDateLabel) }
+
+    static var spacingOfStackView: CGFloat { return Margin.large }
+
     static func configure(_ textView: UITextView, with model: TextViewModel<NSAttributedString>) {
         textView.attributedText = model.text
         textView.isHidden = model.isHidden
@@ -25,12 +31,21 @@ extension PostView {
         stackView.snp.makeConstraints { $0.edges.equalToSuperview().inset(inset) }
     }
 
+    static func preferredHeightOfTextView(
+        with model: TextViewModel<NSAttributedString>,
+        fittingWidth targetWidth: CGFloat)
+            -> CGFloat
+    {
+        guard !model.isHidden else { return 0 }
+        return model.text?.preferredHeight(fittingWidth: targetWidth) ?? 0
+    }
+
     // MARK: - Adding the Subviews
 
     static func addDateLabel(to stackView: UIStackView) -> UILabel {
         let label = UILabel(frame: .zero)
 
-        label.font = .preferredFont(forTextStyle: .footnote)
+        label.font = fontOfDateLabel
         label.textAlignment = .right
         label.textColor = .darkGray
 
@@ -44,7 +59,7 @@ extension PostView {
 
         stackView.alignment = alignment
         stackView.axis = .vertical
-        stackView.spacing = Margin.large
+        stackView.spacing = type(of: self).spacingOfStackView
 
         addSubview(stackView)
 
@@ -52,7 +67,7 @@ extension PostView {
     }
 
     static func addTextView(to stackView: UIStackView) -> UITextView {
-        let textView = UITextView(frame: .zero)
+        let textView = UnpaddedTextView(frame: .zero)
 
         textView.isEditable = false
         textView.isScrollEnabled = false

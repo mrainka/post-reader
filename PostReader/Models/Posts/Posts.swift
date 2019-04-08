@@ -12,27 +12,48 @@ struct Posts {
 
         enum Response: String, CodingKey {
 
+            enum Links: String, CodingKey {
+
+                enum Next: String, CodingKey {
+
+                    case queryParameters = "query_params"
+                }
+
+                case next
+            }
+
+            case links = "_links"
             case posts
         }
 
         case response
     }
 
+    let nextPage: Page?
     let posts: [Post]
 
-    private static func posts(from container: KeyedDecodingContainer<CodingKeys>) -> [Post] {
-        guard let responseContainer = try? container.nestedContainer(
-            keyedBy: CodingKeys.Response.self,
-            forKey: .response)
-        else { return [] }
+    private static func nextPage(from container: KeyedDecodingContainer<CodingKeys.Response>) -> Page? {
+        guard
+            let linksContainer = try? container.nestedContainer(
+                keyedBy: CodingKeys.Response.Links.self,
+                forKey: .links),
+            let nextContainer = try? linksContainer.nestedContainer(
+                keyedBy: CodingKeys.Response.Links.Next.self,
+                forKey: .next)
+        else { return nil }
 
-        return (try? responseContainer.decode([Post].self, forKey: .posts)) ?? []
+        return try? nextContainer.decode(Page.self, forKey: .queryParameters)
     }
 }
 
 extension Posts: Decodable {
 
     init(from decoder: Decoder) throws {
-        posts = type(of: self).posts(from: try decoder.container(keyedBy: CodingKeys.self))
+        let responseContainer = try decoder.container(keyedBy: CodingKeys.self).nestedContainer(
+            keyedBy: CodingKeys.Response.self,
+            forKey: .response)
+
+        nextPage = type(of: self).nextPage(from: responseContainer)
+        posts = (try? responseContainer.decode([Post].self, forKey: .posts)) ?? []
     }
 }

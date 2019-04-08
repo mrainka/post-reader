@@ -6,78 +6,49 @@
 //  Copyright © 2019 Marcin Rainka. All rights reserved.
 //
 
-import Dispatch
+import Foundation
 import RxCocoa
 
 final class PostsViewModel {
 
-    private weak var fetchedPostsProcessing: DispatchWorkItem?
+    var canScrollInfinitely: Bool { return tableDataSourceAndDelegate.canScrollInfinitely }
 
-    let isIndicatingActivity = BehaviorRelay(value: false)
+    var isIndicatingActivity: BehaviorRelay<Bool> { return tableDataSourceAndDelegate.isIndicatingActivity }
 
-    var posts: BehaviorRelay<[PostViewModel]> { return tableDataSource.posts }
+    var onFinishInfiniteScrollRequested: (() -> Void)? {
+        get { return tableDataSourceAndDelegate.onFinishInfiniteScrollRequested }
+        set { tableDataSourceAndDelegate.onFinishInfiniteScrollRequested = newValue }
+    }
 
-    private let repository: AnyRepository<Posts>
-    private weak var repositoryAction: RepositoryAction?
+    var onInsertRowsRequested: (([IndexPath]) -> Void)? {
+        get { return tableDataSourceAndDelegate.onInsertRowsRequested }
+        set { tableDataSourceAndDelegate.onInsertRowsRequested = newValue }
+    }
 
-    var startSearchingWhenAppeared: Bool { return posts.value.isEmpty }
+    var onReloadTableRequested: (() -> Void)? {
+        get { return tableDataSourceAndDelegate.onReloadTableRequested }
+        set { tableDataSourceAndDelegate.onReloadTableRequested = newValue }
+    }
 
-    let tableDataSource = PostsTableViewDataSourceModel()
+    var onResetContentOffsetRequested: (() -> Void)? {
+        get { return tableDataSourceAndDelegate.onResetContentOffsetRequested }
+        set { tableDataSourceAndDelegate.onResetContentOffsetRequested = newValue }
+    }
+
+    var startSearchingWhenAppeared: Bool { return tableDataSourceAndDelegate.posts.isEmpty }
+
+    let tableDataSourceAndDelegate: PostsTableViewDataSourceAndDelegateModel
 
     init(posts: AnyRepository<Posts> = .init(NetworkRepository())) {
-        repository = posts
+        tableDataSourceAndDelegate = .init(posts: posts)
+    }
+
+    func scrolledInfinitely() {
+        tableDataSourceAndDelegate.scrolledInfinitely()
     }
 
     func search(_ text: String?) {
         guard let text = text, !text.isEmpty else { return }
-        fetchPosts(blogName: text)
-    }
-
-    // MARK: - Fetching the Posts
-
-    private func cancelPostsFetching() {
-        fetchedPostsProcessing?.cancel()
-        repositoryAction?.cancel()
-    }
-
-    private func fetchPosts(blogName: String) {
-        cancelPostsFetching()
-
-        isIndicatingActivity.accept(posts.value.isEmpty)
-
-        let specification = PostsSpecification(blogID: blogName + ".tumblr.com", page: .init(limit: 15, offset: 0))
-
-        repositoryAction = repository.query(specification) { [weak self] in
-            guard let `self` = self else { return }
-
-            switch $0 {
-            case .failure:
-                self.isIndicatingActivity.accept(false)
-                // TODO: Inform about failure.
-            case .success(let posts):
-                var postsProcessing: DispatchWorkItem!
-
-                postsProcessing = .init { [weak self] in
-                    defer { postsProcessing = nil }
-
-                    let posts = posts.posts.compactMap {
-                        postsProcessing.isCancelled ? nil : PostViewModelFactory.post(with: $0)
-                    }
-
-                    guard !postsProcessing.isCancelled else { return }
-
-                    DispatchQueue.main.async {
-                        guard let `self` = self else { return }
-                        self.isIndicatingActivity.accept(false)
-                        guard !posts.isEmpty else { return }
-                        self.posts.accept(posts)
-                    }
-                }
-
-                DispatchQueue.global(qos: .userInteractive).async(execute: postsProcessing)
-
-                self.fetchedPostsProcessing = postsProcessing
-            }
-        }
+        tableDataSourceAndDelegate.fetchFirstPage(blogName: text)
     }
 }

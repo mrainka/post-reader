@@ -8,7 +8,6 @@
 
 @testable import PostReader
 import Nimble
-import RxCocoa
 import XCTest
 
 final class PostsViewModelTests: XCTestCase {
@@ -20,11 +19,10 @@ final class PostsViewModelTests: XCTestCase {
         repository = .init()
     }
 
-    func testFetchedSupportedPostsShouldBeUsed() {
-        repository.onQueried = { $1(.success(.init(posts: [.anySupported()]))); return nil }
+    func testShouldFetchPostsWithSearchText() {
         let posts = PostsViewModel(posts: .init(repository))
-        posts.search("anyblog")
-        expect(posts.posts.value).toEventuallyNot(beEmpty())
+        posts.search("anytext")
+        expect(self.repository.queryWasCalled).to(beTrue())
     }
 
     func testShouldNotFetchPostsWithoutSearchText() {
@@ -36,18 +34,11 @@ final class PostsViewModelTests: XCTestCase {
         expect(self.repository.queryWasCalled).to(beFalse())
     }
 
-    func testShouldNotOverridePostsWhenNoNew() {
-        repository.onQueried = { $1(.success(.init(posts: []))); return nil }
-        let posts = PostsViewModel(posts: .init(repository))
-        posts.posts.accept([PostViewModelFactory.any()])
-        posts.search("anyblog")
-        expect(posts.posts.value).toEventuallyNot(beEmpty())
-    }
-
     func testShouldNotStartSearchingWhenAppearedWithPosts() {
+        repository.onQueried = { $1(.success(.init(nextPage: nil, posts: [.anySupported()]))); return nil }
         let posts = PostsViewModel(posts: .init(repository))
-        posts.posts.accept([PostViewModelFactory.any()])
-        expect(posts.startSearchingWhenAppeared).to(beFalse())
+        posts.search("anyblog")
+        expect(posts.startSearchingWhenAppeared).toEventually(beFalse())
     }
 
     func testShouldStartSearchingWhenAppearedWithoutPosts() {

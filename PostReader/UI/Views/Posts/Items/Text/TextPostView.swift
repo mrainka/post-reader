@@ -10,7 +10,13 @@ import UIKit
 
 final class TextPostView: CustomView {
 
+    private static let fontOfTitleLabel = UIFont.preferredFont(forTextStyle: .title1)
+
+    private static let inset = Margin.default
+
     private(set) var model: TextPostViewModel?
+
+    private static let preferredHeightOfDateLabel = TextPostView.preferredHeightOfDateLabel
 
     // MARK: - Subviews
 
@@ -28,9 +34,20 @@ final class TextPostView: CustomView {
     }
 
     override func makeConstraints() {
+        let inset = type(of: self).inset
         type(of: self).makeConstraints(
             of: stackView,
-            inset: .init(top: Margin.default, left: Margin.default, bottom: Margin.default, right: Margin.default))
+            inset: .init(top: inset, left: inset, bottom: inset, right: inset))
+    }
+
+    private static func preferredHeightOfTextView(
+        with model: TextViewModel<String>,
+        font: UIFont,
+        fittingWidth targetWidth: CGFloat)
+            -> CGFloat
+    {
+        guard !model.isHidden else { return 0 }
+        return model.text?.preferredHeight(with: font, fittingWidth: targetWidth) ?? 0
     }
 
     // MARK: - Adding the Subviews
@@ -47,12 +64,25 @@ final class TextPostView: CustomView {
     private func addTitleLabel() {
         let label = UILabel(frame: .zero)
 
-        label.font = .preferredFont(forTextStyle: .title1)
+        label.font = type(of: self).fontOfTitleLabel
         label.numberOfLines = 0
 
         stackView.addArrangedSubview(label)
 
         titleLabel = label
+    }
+}
+
+extension TextPostView: HeightPreferable {
+
+    static func preferredHeight(with model: TextPostViewModel, fittingWidth targetWidth: CGFloat) -> CGFloat {
+        let numberOfViews = 1 + (model.text.isHidden ? 0 : 1) + (model.title.isHidden ? 0 : 1)
+        let targetWidth = targetWidth - inset * 2
+        return preferredHeightOfDateLabel
+            + preferredHeightOfTextView(with: model.text, fittingWidth: targetWidth)
+            + preferredHeightOfTextView(with: model.title, font: fontOfTitleLabel, fittingWidth: targetWidth)
+            + spacingOfStackView * .init(numberOfViews - 1)
+            + inset * 2
     }
 }
 

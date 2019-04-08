@@ -8,7 +8,12 @@
 
 import UIKit
 
-protocol PostCell: CustomViewContaining, ModelConfigurable where Self: UITableViewCell, ModelType: PostViewModel {}
+protocol PostCell: CustomViewContaining, HeightPreferable, ModelConfigurable
+    where
+        Self: UITableViewCell,
+        CustomViewType: HeightPreferable,
+        CustomViewType.HeightPreferringModelType == ModelType,
+        ModelType: PostViewModel {}
 
 extension PostCell {
 
@@ -17,6 +22,13 @@ extension PostCell {
     }
 
     static var selectionStyle: SelectionStyle { return .none }
+
+    static func preferredHeight(with model: ModelType, fittingWidth targetWidth: CGFloat) -> CGFloat {
+        let preferredHeightOfCustomView = CustomViewType.preferredHeight(
+            with: model,
+            fittingWidth: targetWidth - contentInset.left - contentInset.right)
+        return preferredHeightOfCustomView + contentInset.bottom + contentInset.top
+    }
 
     func roundCorners() {
         guard let customView = customView else { return }
